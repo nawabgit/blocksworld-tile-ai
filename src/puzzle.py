@@ -4,16 +4,15 @@ from random import shuffle
 class Node:
     """
     This class generically defines a Node for the tree traversal algorithms
-    Stores the current state of the game, the parent, and the depth of the node
+    Stores the current state of the game, the moves taken, and the depth of the node
     """
-    def __init__(self, state, parent=None, depth=0):
+    def __init__(self, state, moves_taken=[], depth=0):
         self.state = state
-        self.parent = parent
+        self.moves_taken = moves_taken
         self.depth = depth
-        self.children = []
 
     def generate_children(self):
-        moves = self.game_state.possible_moves()
+        moves = self.state.possible_moves()
         for move in moves:
-            self.children.append(Node(move, parent=self, depth=self.depth + 1))
+            self.children.append(Node(move, moves_taken=self.moves_taken + [move.move_taken], depth=self.depth + 1))
         shuffle(self.children)
