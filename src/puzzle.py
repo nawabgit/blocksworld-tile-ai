@@ -16,3 +16,19 @@ class Node:
         for move in moves:
             self.children.append(Node(move, moves_taken=self.moves_taken + [move.move_taken], depth=self.depth + 1))
         shuffle(self.children)
+
+
+class State:
+    def __init__(self, grid=None):
+        self.grid = grid
+
+    def initialise_grid(self, blk_pos, agent_pos, n=4):
+        """
+        :param blk_pos: a list (x,y) tuples of blocks
+        :param agent_pos: (x,y) position of agent
+        :param n: size of grid n*n
+        """
+        grid = [['X']*n for _ in range(n)]
+        grid[agent_pos[0]][agent_pos[1]] = 'A'
+        for i in range(1, len(blk_pos)+1):
+            grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
