@@ -12,10 +12,13 @@ class Node:
         self.depth = depth
 
     def generate_children(self):
+        children = []
         moves = self.state.possible_moves()
         for move in moves:
             self.children.append(Node(move, moves_taken=self.moves_taken + [move.move_taken], depth=self.depth + 1))
-        shuffle(self.children)
+        shuffle(children)
+
+        return children
 
 
 class State:
