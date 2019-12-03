@@ -40,6 +40,53 @@ class State:
         for i in range(1, len(blk_pos)+1):
             self.grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
 
+    def possible_moves(self):
+        """
+        Produces all possible moves from the current State 
+
+        :returns a list of States
+        """
+        moves = []
+        ap = self.agent_pos
+
+        # Move up
+        try:
+            new_pos = [ap[0]-1][ap[1]]
+            temp = self.grid[new_pos[0]][new_pos[1]]
+            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="UP")
+            moves.append(new_state)
+        except:
+            pass
+
+        # Move down
+        try:
+            new_pos = [ap[0]+1][ap[1]]
+            temp = self.grid[new_pos[0]][new_pos[1]]
+            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="DOWN")
+            moves.append(new_state)
+        except:
+            pass
+
+        # Move left
+        try:
+            new_pos = [ap[0],ap[1]-1]
+            temp = self.grid[new_pos[0]][new_pos[1]]
+            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="RIGHT")
+            moves.append(new_state)
+        except:
+            pass
+
+        # Move right
+        try:
+            new_pos = [ap[0],ap[1]+1]
+            temp = self.grid[new_pos[0]][new_pos[1]]
+            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="UP")
+            moves.append(new_state)
+        except:
+            pass
+
+        return moves
+
     def swap_tiles(self, agent_pos, tile_pos):
         """
         :param agent_pos: position of the agent
