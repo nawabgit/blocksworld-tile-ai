@@ -39,3 +39,22 @@ class State:
         self.grid[agent_pos[0]][agent_pos[1]] = 'A'
         for i in range(1, len(blk_pos)+1):
             self.grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
+
+    def swap_tiles(self, agent_pos, tile_pos):
+        """
+        :param agent_pos: position of the agent
+        :param tile_pos: the tile the agent wants to move
+
+        :returns new grid with swapped positions
+        """
+        temp_grid = self.grid
+        if temp_grid[tile_pos[0]][tile_pos[1]] == "X":
+            temp_grid[tile_pos[0]][tile_pos[1]] = 'A'
+            temp_grid[agent_pos[0]][agent_pos[1]] = 'X'
+        elif temp_grid[tile_pos[0]][tile_pos[1]].isdigit():
+            temp_grid[agent_pos[0]][agent_pos[1]] = temp_grid[tile_pos[0]][tile_pos[1]]
+            temp_grid[tile_pos[0]][tile_pos[1]] = 'A'
+        else:
+            raise Exception("Invalid swap")
+
+        return temp_grid
