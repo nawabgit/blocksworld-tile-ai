@@ -20,6 +20,12 @@ class Node:
 
         return children
 
+    def is_end_state(self, end_state):
+        if self.state.grid == end_state.grid:
+            return True
+        else:
+            return False
+
 
 class State:
     def __init__(self, agent_pos, grid=None, move_taken=None):
@@ -42,7 +48,7 @@ class State:
 
     def possible_moves(self):
         """
-        Produces all possible moves from the current State 
+        Produces all possible moves from the current State
 
         :returns a list of States
         """
