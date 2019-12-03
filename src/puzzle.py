@@ -19,8 +19,10 @@ class Node:
 
 
 class State:
-    def __init__(self, grid=None):
+    def __init__(self, agent_pos, grid=None, move_taken=None):
         self.grid = grid
+        self.move_taken = move_taken
+        self.agent_pos = agent_pos
 
     def initialise_grid(self, blk_pos, agent_pos, n=4):
         """
@@ -28,7 +30,9 @@ class State:
         :param agent_pos: (x,y) position of agent
         :param n: size of grid n*n
         """
-        grid = [['X']*n for _ in range(n)]
-        grid[agent_pos[0]][agent_pos[1]] = 'A'
+        self.agent_pos = agent_pos
+        self.move_taken = None
+        self.grid = [['X']*n for _ in range(n)]
+        self.grid[agent_pos[0]][agent_pos[1]] = 'A'
         for i in range(1, len(blk_pos)+1):
-            grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
+            self.grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
