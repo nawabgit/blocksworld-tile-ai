@@ -1,5 +1,7 @@
 from collections import deque
+from queue import Queue
 from .puzzle import State, Node
+
 
 class Search:
     """
@@ -18,6 +20,22 @@ class Search:
 
             for n in node.generate_children():
                 stack.push(n)
+                t_complexity += 1
+
+        raise Exception("No solution found!")
+
+    def bfs(self, start_state, end_state):
+        t_complexity = 0
+        initial_node = Node(start_state)
+        queue = Queue()
+        queue.put(initial_node)
+        while queue:
+            node = queue.get()
+            if node.is_end_state(end_state):
+                return [node, t_complexity]
+
+            for n in node.generate_children():
+                queue.put(n)
                 t_complexity += 1
 
         raise Exception("No solution found!")
