@@ -57,3 +57,12 @@ class Search:
 
         return [False, t_complexity]
 
+    def ids(self, start_state, end_state, depth_limit):
+        t_complexity = 0
+        for i in range(depth_limit + 1):
+            node, t = self.dls(start_state, end_state, i)
+            t_complexity += t
+            if node:
+                return [node, t_complexity]
+
+        raise Exception(f"No solution found for depth limit {depth_limit}!")
