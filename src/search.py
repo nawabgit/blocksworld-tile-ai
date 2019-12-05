@@ -40,3 +40,20 @@ class Search:
 
         raise Exception("No solution found!")
 
+    def dls(self, start_state, end_state, max_depth):
+        t_complexity = 0
+        initial_node = Node(start_state)
+        stack = deque()
+        stack.push(initial_node)
+        while stack:
+            node = stack.pop()
+            if node.is_end_state(end_state):
+                return [node, t_complexity]
+
+            if node.depth < max_depth:
+                for n in node.generate_children():
+                    stack.push(n)
+                    t_complexity += 1
+
+        return [False, t_complexity]
+
