@@ -1,11 +1,12 @@
 from collections import deque
+from .puzzle import State, Node
 
 class Search:
     """
     The class containing all search algorithms that the agent utilises
     """
 
-    def dfs(start_state, end_state):
+    def dfs(self, start_state, end_state):
         t_complexity = 0
         initial_node = Node(start_state)
         stack = deque()
@@ -17,8 +18,7 @@ class Search:
 
             for n in node.generate_children():
                 stack.push(n)
-                t_complexity +=1
+                t_complexity += 1
 
         raise Exception("No solution found!")
 
-    def bfs()

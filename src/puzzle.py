@@ -57,36 +57,36 @@ class State:
 
         # Move up
         try:
-            new_pos = [ap[0]-1][ap[1]]
+            new_pos = [ap[0]-1, ap[1]]
             temp = self.grid[new_pos[0]][new_pos[1]]
-            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="UP")
+            new_state = State(new_pos, grid=self.swap_tiles(ap, new_pos), move_taken="UP")
             moves.append(new_state)
         except:
             pass
 
         # Move down
         try:
-            new_pos = [ap[0]+1][ap[1]]
+            new_pos = [ap[0]+1, ap[1]]
             temp = self.grid[new_pos[0]][new_pos[1]]
-            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="DOWN")
+            new_state = State(new_pos, grid=self.swap_tiles(ap, new_pos), move_taken="DOWN")
             moves.append(new_state)
         except:
             pass
 
         # Move left
         try:
-            new_pos = [ap[0],ap[1]-1]
+            new_pos = [ap[0], ap[1]-1]
             temp = self.grid[new_pos[0]][new_pos[1]]
-            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="RIGHT")
+            new_state = State(new_pos, grid=self.swap_tiles(ap, new_pos), move_taken="RIGHT")
             moves.append(new_state)
         except:
             pass
 
         # Move right
         try:
-            new_pos = [ap[0],ap[1]+1]
+            new_pos = [ap[0], ap[1]+1]
             temp = self.grid[new_pos[0]][new_pos[1]]
-            new_state = State(new_pos, grid=swap_tiles(ap, new_pos[0], new_pos[1]]), move_taken="UP")
+            new_state = State(new_pos, grid=self.swap_tiles(ap, new_pos), move_taken="UP")
             moves.append(new_state)
         except:
             pass
