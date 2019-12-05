@@ -9,7 +9,7 @@ class Search:
     """
 
     def dfs(self, start_state, end_state):
-        t_complexity = 0
+        t_complexity = 1
         initial_node = Node(start_state)
         stack = deque()
         stack.push(initial_node)
@@ -25,7 +25,7 @@ class Search:
         raise Exception("No solution found!")
 
     def bfs(self, start_state, end_state):
-        t_complexity = 0
+        t_complexity = 1
         initial_node = Node(start_state)
         queue = Queue()
         queue.put(initial_node)
@@ -41,7 +41,7 @@ class Search:
         raise Exception("No solution found!")
 
     def dls(self, start_state, end_state, max_depth):
-        t_complexity = 0
+        t_complexity = 1
         initial_node = Node(start_state)
         stack = deque()
         stack.push(initial_node)
