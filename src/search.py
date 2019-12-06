@@ -15,7 +15,7 @@ class Search:
         stack.push(initial_node)
         while stack:
             node = stack.pop()
-            if node.is_end_state(end_state):
+            if node.is_state(end_state):
                 return [node, t_complexity]
 
             for n in node.generate_children():
@@ -31,7 +31,7 @@ class Search:
         queue.put(initial_node)
         while queue:
             node = queue.get()
-            if node.is_end_state(end_state):
+            if node.is_state(end_state):
                 return [node, t_complexity]
 
             for n in node.generate_children():
@@ -47,7 +47,7 @@ class Search:
         stack.push(initial_node)
         while stack:
             node = stack.pop()
-            if node.is_end_state(end_state):
+            if node.is_state(end_state):
                 return [node, t_complexity]
 
             if node.depth < max_depth:

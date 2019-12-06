@@ -20,8 +20,8 @@ class Node:
 
         return children
 
-    def is_end_state(self, end_state):
-        if self.state.grid == end_state.grid:
+    def is_state(self, target_state):
+        if self.state.grid == target_state.grid:
             return True
         else:
             return False
