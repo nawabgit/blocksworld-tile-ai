@@ -1,4 +1,5 @@
 from collections import deque
+from operator import attrgetter
 from queue import Queue
 from .puzzle import State, Node
 
@@ -66,3 +67,41 @@ class Search:
                 return [node, t_complexity]
 
         raise Exception(f"No solution found for depth limit {depth_limit}!")
+
+    def a_star(self, start_state, end_state):
+        t_complexity = 1
+        initial_node = Node(start_state)
+        opened = [initial_node]
+        closed = []
+        while opened:
+            node = min(opened, key=attrgetter('f'))
+            if node.is_state(end_state):
+                return [node, t_complexity]
+            else:
+                opened.remove(node)
+                closed.append(node)
+                for n in node.generate_children():
+                    is_closed = False
+                    is_improvement = True
+
+                    for c in closed:
+                        if n.is_state(c.state):
+                            is_closed = True
+                            break
+
+                    if is_closed:
+                        continue
+
+                    n.g = node.g + 1
+                    n.h = self.heuristic_cost(n.state.grid, end_state)
+                    n.f = n.g + n.h
+
+                    for o in opened:
+                        if n.is_state(o.state) and n.g >= o.g:
+                            is_improvement = False
+                            break
+
+                    if is_improvement:
+                        opened.append(n)
+
+        raise Exception(f"No solution found!")

@@ -10,6 +10,9 @@ class Node:
         self.state = state
         self.moves_taken = moves_taken
         self.depth = depth
+        self.g = 0
+        self.h = 0
+        self.f = 0
 
     def generate_children(self):
         children = []
