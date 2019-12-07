@@ -93,7 +93,7 @@ class Search:
                         continue
 
                     n.g = node.g + 1
-                    n.h = self.heuristic_cost(n.state.grid, end_state)
+                    n.h = self.heuristic_cost(n.state.grid, end_state.grid)
                     n.f = n.g + n.h
 
                     for o in opened:
@@ -105,3 +105,15 @@ class Search:
                         opened.append(n)
 
         raise Exception(f"No solution found!")
+
+    def heuristic_cost(self, grid, end_grid):
+        cost = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] not in ['A', 'X']:
+                    for k in range(len(end_grid)):
+                        for l in range(len(end_grid[k])):
+                            if grid[i][j] == end_grid[k][l]:
+                                cost += abs(i-k) + abs(j-l)
+
+        return cost
