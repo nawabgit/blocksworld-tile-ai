@@ -18,12 +18,15 @@ class Node:
         children = []
         moves = self.state.possible_moves()
         for move in moves:
-            self.children.append(Node(move, moves_taken=self.moves_taken + [move.move_taken], depth=self.depth + 1))
+            children.append(Node(move, moves_taken=self.moves_taken + [move.move_taken], depth=self.depth + 1))
         shuffle(children)
 
         return children
 
     def is_state(self, target_state):
+        grid = self.state.grid
+        grid[self.state.agent_pos[0]][self.state.agent_pos[1]] = 'X'
+        target_state.grid[target_state.agent_pos[0]][target_state.agent_pos[1]] = 'X'
         if self.state.grid == target_state.grid:
             return True
         else:
@@ -46,8 +49,8 @@ class State:
         self.move_taken = None
         self.grid = [['X']*n for _ in range(n)]
         self.grid[agent_pos[0]][agent_pos[1]] = 'A'
-        for i in range(1, len(blk_pos)+1):
-            self.grid[blk_pos[i][0]][blk_pos[i][1]] = str(i)
+        for i in range(0, len(blk_pos)):
+            self.grid[blk_pos[i][0]][blk_pos[i][1]] = str(i+1)
 
     def possible_moves(self):
         """
