@@ -81,6 +81,7 @@ class Search:
                 opened.remove(node)
                 closed.append(node)
                 for n in node.generate_children():
+                    t_complexity += 1
                     is_closed = False
                     is_improvement = True
 
