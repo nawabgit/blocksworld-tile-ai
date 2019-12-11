@@ -45,7 +45,7 @@ class Search:
         t_complexity = 1
         initial_node = Node(start_state)
         stack = deque()
-        stack.push(initial_node)
+        stack.append(initial_node)
         while stack:
             node = stack.pop()
             if node.is_state(end_state):
@@ -53,7 +53,7 @@ class Search:
 
             if node.depth < max_depth:
                 for n in node.generate_children():
-                    stack.push(n)
+                    stack.append(n)
                     t_complexity += 1
 
         return [False, t_complexity]
