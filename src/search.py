@@ -1,7 +1,7 @@
 from collections import deque
 from operator import attrgetter
 from queue import Queue
-from .puzzle import State, Node
+from puzzle import State, Node
 
 
 class Search:
@@ -13,14 +13,14 @@ class Search:
         t_complexity = 1
         initial_node = Node(start_state)
         stack = deque()
-        stack.push(initial_node)
+        stack.append(initial_node)
         while stack:
             node = stack.pop()
             if node.is_state(end_state):
                 return [node, t_complexity]
 
             for n in node.generate_children():
-                stack.push(n)
+                stack.append(n)
                 t_complexity += 1
 
         raise Exception("No solution found!")
