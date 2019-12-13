@@ -1,8 +1,9 @@
 # blocksworld-tile-ai
-AI for agent in 4*4 blocksworld tile problem using multiple search algorithms and heuristics.  
+AI for agent in 4*4 blocksworld tile problem using multiple tree traversal algorithms and heuristics.  
+Currently has implemented DFS, BFS, IDDFS and A* algorithms.
+
 The agent can move Up / Down / Left / Right.  
 When interacting with a tile, the agent swaps places with it.
-
 
 
 The problem:  
