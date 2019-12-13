@@ -64,7 +64,7 @@ class State:
         """
         The State can be initialised to a certain configuration
 
-        :param blk_pos: a list (x,y) tuples of blocks
+        :param blk_pos: a list of (x,y) tuples of blocks
         :param agent_pos: (x,y) position of agent
         :param n: size of grid n*n
         """
