@@ -15,6 +15,11 @@ class Node:
         self.f = 0
 
     def generate_children(self):
+        """
+        Produces all of the children of this Node in randomized order
+
+        :return: list of Nodes
+        """
         children = []
         moves = self.state.possible_moves()
         for move in moves:
@@ -24,6 +29,12 @@ class Node:
         return children
 
     def is_state(self, target_state):
+        """
+        Evaluates if a state is identical to the State contained within this Node
+
+        :param target_state: the state to compare
+        :return: boolean if there is a match
+        """
         grid = self.state.grid
         grid[self.state.agent_pos[0]][self.state.agent_pos[1]] = 'X'
         target_state.grid[target_state.agent_pos[0]][target_state.agent_pos[1]] = 'X'
@@ -34,13 +45,25 @@ class Node:
 
 
 class State:
+    """
+    Stores the current game state of the grid and methods to modify the current state
+    or generate possible future states
+    """
+
     def __init__(self, agent_pos, grid=None, move_taken=None):
+        """
+        :param agent_pos: Position of the Agent
+        :param grid: 2D populated list of lists
+        :param move_taken: Previous move taken to reach this state
+        """
         self.grid = grid
         self.move_taken = move_taken
         self.agent_pos = agent_pos
 
     def initialise_grid(self, blk_pos, agent_pos, n=4):
         """
+        The State can be initialised to a certain configuration
+
         :param blk_pos: a list (x,y) tuples of blocks
         :param agent_pos: (x,y) position of agent
         :param n: size of grid n*n
@@ -101,8 +124,10 @@ class State:
 
     def swap_tiles(self, agent_pos, tile_pos):
         """
-        :param agent_pos: position of the agent
-        :param tile_pos: the tile the agent wants to move
+        Swaps tiles on the grid
+
+        :param agent_pos: current position of the agent
+        :param tile_pos: the tile the agent wants to swap with
 
         :returns new grid with swapped positions
         """
